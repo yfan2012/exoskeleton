@@ -1,0 +1,27 @@
+##Static muscle tension - holding at different angles
+
+##Dorsiflexion angle
+dorflex=seq(0, pi, -pi/72)
+
+##Muscle data
+gvivo=.55 #in vivo length gastrocnemius
+grest=gvivo*.85 #resting length gastrocnemius
+tvivo=.38
+trest=tvivo*.85 #resting length tibialis anterior
+
+##Nonlinear exponents
+##Assume: thickness is linear to exoponent of nonlinear spring
+##Assume: gastrocnemius is twice as thick as tibialis anterior
+ga=seq(1, 6, .5)
+gt=ga/2
+
+##Angle to length
+r1=.07
+r2=.05
+t=sqrt((r1^2)+(tvivo^2)-2*r1*tvivo*cos(dorflex))
+g=sqrt((r2^2)+(gvivo^2)-2*r2*gvivo*cos(180-dorflex))
+
+
+
+
+

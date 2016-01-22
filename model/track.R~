@@ -1,0 +1,29 @@
+##Track length calculations
+plotpath="~/Dropbox/School/Hopkins/Senior/Honors/tracklength.pdf"
+require(ggplot2)
+require(reshape2)
+
+##Fixed parameters
+L=.22
+fmax=.25
+
+##Figure out max alpha
+smax=sqrt((L^2)+(fmax^2))
+amax=asin(L/smax)
+
+##Get string lengths for each corresponding angle
+angle=seq(amax, pi/2, .05)
+s=sin(alpha)/L
+
+##Endpoints
+Lr=(pi/2)+(pi/9)
+rs=asin(L*sin(Lr)/s)
+Ls=pi-(Lr+rs)
+r1=sin(Ls)*s/(sin(Lr))
+r2=sqrt((s^2)-(L^2))
+length=r2-r1
+
+relation=as.data.frame(angle, length)
+
+pdf(file.path(plotdir), height=8.5, width=11)
+print(ggplot(relation, aes(x=angle, y=length)) + theme_bw() +
